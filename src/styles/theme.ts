@@ -24,6 +24,8 @@ export const theme = extendTheme({
   styles: {
     global: {
       body: {
+        w: '100vw',
+        h: '100vh',
         bg: 'brand.500',
         color: '#ffffff',
       },

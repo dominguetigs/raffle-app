@@ -43,7 +43,7 @@ export const RaffleCard = ({ length = 10 }: RaffleCardProps): JSX.Element => {
     setBoxWidth(width);
   }
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     updateBoxWidth();
   }, []);
 
@@ -58,7 +58,7 @@ export const RaffleCard = ({ length = 10 }: RaffleCardProps): JSX.Element => {
   }, [boxWidth]);
 
   return (
-    <Flex direction="column" align="center" maxW={800} m="0 auto" ref={boxRef}>
+    <Flex direction="column" align="center" maxW={600} maxH={600} m="0 auto" ref={boxRef}>
       {cards.map((col: number) => (
         <Flex key={col} h={`${cardDimension}px`}>
           {cards.map((row: number) => (

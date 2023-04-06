@@ -1,6 +1,9 @@
-import { Box, Card, CardBody, Grid, GridItem, Text } from '@chakra-ui/react';
-import { RaffleCard } from '@r/components/RaffleCard';
 import Head from 'next/head';
+
+import { Box } from '@chakra-ui/react';
+
+import { RaffleCard } from '@r/components/RaffleCard';
+import { Header } from '@r/components/header';
 
 export default function Home() {
   return (
@@ -11,7 +14,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Box as="main" maxW={1200} p={4} m="0 auto">
+      <Box as="main" maxW={1200} p={8} m="0 auto">
+        <Header />
         <RaffleCard />
       </Box>
     </>
