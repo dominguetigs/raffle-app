@@ -22,11 +22,6 @@ export const RaffleCard = (): JSX.Element => {
 
   const [boxWidth, setBoxWidth] = useState(0);
 
-  function setCardNumber(n: number): string {
-    const value = String(n + 1);
-    return value.length === 1 ? value.padStart(2, '0') : value;
-  }
-
   function calculateCardFontSize(dimension: number): void {
     const fontSize = Math.ceil(BASE_FONT_SIZE + dimension / FONT_SIZE_RATIO);
     setCardFontSize(fontSize);

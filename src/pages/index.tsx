@@ -4,6 +4,7 @@ import { Box } from '@chakra-ui/react';
 
 import { RaffleCard } from '@r/components/RaffleCard';
 import { Header } from '@r/components/header';
+import { RaffleRegisterModal } from '@r/components/RaffleRegisterModal';
 
 export default function Home() {
   return (
@@ -14,9 +15,10 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Box as="main" maxW={1200} p={8} m="0 auto">
+      <Box as="main" maxW={1200} p={[2, 2, 8]} m="0 auto">
         <Header />
         <RaffleCard />
+        <RaffleRegisterModal />
       </Box>
     </>
   );

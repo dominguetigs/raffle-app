@@ -1,12 +1,4 @@
-import {
-  createContext,
-  Dispatch,
-  ReactNode,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import { createContext, ReactNode, useContext, useState } from 'react';
 
 import { useDisclosure, UseDisclosureReturn } from '@chakra-ui/react';
 
@@ -15,17 +7,26 @@ interface RaffleRegisterProps {
 }
 
 type RaffleRegisterContextData = {
-  isEditing: boolean;
-  setIsEditing: Dispatch<SetStateAction<boolean>>;
+  disclosure: UseDisclosureReturn;
+
+  currentCardNumber: string | undefined;
+  openRegister: (cardNumber: string) => void;
 };
 
 const RaffleRegisterContext = createContext({} as RaffleRegisterContextData);
 
 export const RaffleRegisterProvider = ({ children }: RaffleRegisterProps): JSX.Element => {
-  const [isEditing, setIsEditing] = useState(false);
+  const disclosure = useDisclosure();
+
+  const [currentCardNumber, setCurrentCardNumber] = useState<string>();
+
+  function openRegister(cardNumber: string): void {
+    setCurrentCardNumber(cardNumber);
+    disclosure.onOpen();
+  }
 
   return (
-    <RaffleRegisterContext.Provider value={{ isEditing, setIsEditing }}>
+    <RaffleRegisterContext.Provider value={{ disclosure, currentCardNumber, openRegister }}>
       {children}
     </RaffleRegisterContext.Provider>
   );
