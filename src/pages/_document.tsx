@@ -15,6 +15,12 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
+
+        <style>{`
+          #__next {
+            height: 100vh;
+          }
+        `}</style>
       </body>
     </Html>
   );

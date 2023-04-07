@@ -15,8 +15,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Box as="main" maxW={1200} p={[2, 2, 8]} m="0 auto">
-        <Header />
+      <Box as="main" h="100%" maxW={1200} p={[2, 2, 8]} m="0 auto">
+        {/** <Header /> **/}
         <RaffleCard />
         <RaffleRegisterModal />
       </Box>
