@@ -27,7 +27,7 @@ export const theme = extendTheme({
         w: '100vw',
         h: '100vh',
         bg: 'brand.500',
-        color: '#ffffff',
+        color: '#000000',
       },
     },
   },

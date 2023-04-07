@@ -1,77 +1,63 @@
-import { useEffect, useState } from 'react';
+import { GridItem, Popover, PopoverTrigger, Text, useDisclosure } from '@chakra-ui/react';
 
-import { GridItem, Text } from '@chakra-ui/react';
+import { useRaffleRegister } from '@r/hooks/useRaffleRegister';
 
-import {
-  BASE_FONT_SIZE,
-  FONT_SIZE_RATIO,
-  RAFFLE_GRID_LENGTH,
-  RAFFLE_ROW_COL_LENGTH,
-} from '@r/constants';
+import { RaffleCardItemRegister } from '../RaffleCardItemRegister';
 
 interface RaffleCardItemProps {
   cardNumber: number;
-  parentRef: any;
+  cardDimension: number;
+  cardFontSize: number;
 }
 
-export const RaffleCardItem = ({ cardNumber, parentRef }: RaffleCardItemProps): JSX.Element => {
-  const [cardDimension, setCardDimension] = useState(0);
+export const RaffleCardItem = ({
+  cardNumber,
+  cardDimension,
+  cardFontSize,
+}: RaffleCardItemProps): JSX.Element => {
+  const { onOpen, onClose, isOpen } = useDisclosure();
 
-  const [cardFontSize, setCardFontSize] = useState(0);
-
-  const [boxWidth, setBoxWidth] = useState(0);
+  const { isEditing, setIsEditing } = useRaffleRegister();
 
   function setCardNumber(n: number): string {
     const value = String(n + 1);
     return value.length === 1 ? value.padStart(2, '0') : value;
   }
 
-  function calculateCardFontSize(dimension: number): void {
-    const fontSize = Math.ceil(BASE_FONT_SIZE + dimension / FONT_SIZE_RATIO);
-    setCardFontSize(fontSize);
+  function handleOnOpen(): void {
+    if (isEditing) {
+      return;
+    }
+
+    setIsEditing(true);
+    onOpen();
   }
 
-  function calculateCardDimension(): void {
-    const width = boxWidth;
-    const dimension = Math.floor(width / (RAFFLE_GRID_LENGTH / RAFFLE_ROW_COL_LENGTH));
-    calculateCardFontSize(dimension);
-    setCardDimension(dimension);
+  function handleOnClose(): void {
+    setIsEditing(false);
+    onClose();
   }
-
-  function updateBoxWidth(): void {
-    const width = parentRef.current?.offsetWidth;
-    setBoxWidth(width);
-  }
-
-  useEffect(() => {
-    updateBoxWidth();
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener('resize', updateBoxWidth);
-
-    return () => window.removeEventListener('resize', updateBoxWidth);
-  }, []);
-
-  useEffect(() => {
-    calculateCardDimension();
-  }, [boxWidth]);
 
   return (
-    <GridItem
-      key={cardNumber}
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      w={`${cardDimension}px`}
-      h={`${cardDimension}px`}
-      bg="#7fa3d3"
-      borderWidth="1px"
-      borderColor="brand.300"
-    >
-      <Text as="span" fontSize={`${cardFontSize}px`}>
-        {setCardNumber(cardNumber)}
-      </Text>
-    </GridItem>
+    <Popover isOpen={isOpen} onOpen={handleOnOpen} onClose={handleOnClose} closeOnBlur={false}>
+      <PopoverTrigger>
+        <GridItem
+          key={cardNumber}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          w={`${cardDimension}px`}
+          h={`${cardDimension}px`}
+          bg="#7fa3d3"
+          borderWidth="1px"
+          borderColor="brand.300"
+        >
+          <Text as="span" fontSize={`${cardFontSize}px`}>
+            {setCardNumber(cardNumber)}
+          </Text>
+        </GridItem>
+      </PopoverTrigger>
+      <RaffleCardItemRegister />
+    </Popover>
   );
 };
