@@ -21,7 +21,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     try {
       const data = await select();
-      console.log(data, req.body);
       const updatedData = { ...data, ...req.body };
 
       await fs.writeFile(databasePath, JSON.stringify(updatedData));
