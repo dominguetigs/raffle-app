@@ -13,7 +13,7 @@ export const RaffleCardItem = ({
   cardDimension,
   cardFontSize,
 }: RaffleCardItemProps): JSX.Element => {
-  const { openRegister } = useRaffleRegister();
+  const { selectedNumbers, openRegister } = useRaffleRegister();
 
   function formatCardNumber(n: number): string {
     const value = String(n + 1);
