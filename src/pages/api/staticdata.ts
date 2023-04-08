@@ -2,8 +2,6 @@ import fs from 'fs/promises';
 
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import path from 'path';
-
 const databasePath = new URL('../../../db.json', import.meta.url);
 
 export type Data = { [key: string]: string };
@@ -19,9 +17,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const data = select();
     res.status(200).json(data);
   } else if (req.method === 'POST') {
+    console.log(databasePath);
+
     try {
       const data = select();
       const updatedData = Object.assign(data, req.body);
+
+      console.log(updatedData);
 
       await fs.writeFile(databasePath, JSON.stringify(updatedData));
 

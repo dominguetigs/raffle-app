@@ -1,8 +1,9 @@
+import { useEffect, useState } from 'react';
+
 import {
   Badge,
   Button,
   FormControl,
-  FormLabel,
   Input,
   Modal,
   ModalBody,
@@ -16,9 +17,20 @@ import {
 import { useRaffleRegister } from '@r/hooks/useRaffleRegister';
 
 export const RaffleRegisterModal = (): JSX.Element => {
-  const { disclosure, currentCardNumber } = useRaffleRegister();
+  const { disclosure, currentCardNumber, selectedNumbers, save } = useRaffleRegister();
+
+  const [name, setName] = useState<string>('');
 
   const { isOpen, onClose } = disclosure;
+
+  function handleSave(): void {
+    save({ [currentCardNumber]: name });
+    onClose();
+  }
+
+  useEffect(() => {
+    setName(selectedNumbers[currentCardNumber] || '');
+  }, [currentCardNumber]);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered>
@@ -30,12 +42,19 @@ export const RaffleRegisterModal = (): JSX.Element => {
         <ModalCloseButton />
         <ModalBody>
           <FormControl>
-            <Input placeholder="Nome" colorScheme="brand" />
+            <Input
+              placeholder="Nome"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              colorScheme="brand"
+            />
           </FormControl>
         </ModalBody>
 
         <ModalFooter>
-          <Button colorScheme="brand">Salvar</Button>
+          <Button colorScheme="brand" onClick={() => handleSave()}>
+            Salvar
+          </Button>
         </ModalFooter>
       </ModalContent>
     </Modal>

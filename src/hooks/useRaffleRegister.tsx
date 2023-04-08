@@ -10,7 +10,7 @@ interface RaffleRegisterProps {
 
 type RaffleRegisterContextData = {
   disclosure: UseDisclosureReturn;
-  currentCardNumber: string | undefined;
+  currentCardNumber: string;
   selectedNumbers: Data;
   openRegister: (cardNumber: string) => void;
   save: (data: Data) => void;
@@ -25,7 +25,7 @@ export const RaffleRegisterProvider = ({ children }: RaffleRegisterProps): JSX.E
 
   const [selectedNumbers, setSelectedNumbers] = useState<Data>({});
 
-  const [currentCardNumber, setCurrentCardNumber] = useState<string>();
+  const [currentCardNumber, setCurrentCardNumber] = useState<string>('');
 
   async function retrieveSelectedNumbers(): Promise<void> {
     try {
