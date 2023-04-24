@@ -5,6 +5,7 @@ import { Box } from '@chakra-ui/react';
 import { RaffleCard } from '@r/components/RaffleCard';
 import { Header } from '@r/components/header';
 import { RaffleRegisterModal } from '@r/components/RaffleRegisterModal';
+import { Raffle } from '@r/components/Raffle';
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
         {/** <Header /> **/}
         <RaffleCard />
         <RaffleRegisterModal />
+        <Raffle />
       </Box>
     </>
   );

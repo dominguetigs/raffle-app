@@ -17,8 +17,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const data = select();
     res.status(200).json(data);
   } else if (req.method === 'POST') {
-    console.log(databasePath);
-
     try {
       const data = await select();
       const updatedData = { ...data, ...req.body };

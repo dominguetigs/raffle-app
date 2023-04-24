@@ -1,4 +1,4 @@
-import { GridItem, Text } from '@chakra-ui/react';
+import { Box, Flex, GridItem, Text } from '@chakra-ui/react';
 
 import { useRaffleRegister } from '@r/hooks/useRaffleRegister';
 
@@ -22,6 +22,10 @@ export const RaffleCardItem = ({
 
   const formattedCardNumber = formatCardNumber(cardNumber);
 
+  const selected = selectedNumbers[formattedCardNumber];
+
+  console.log(selected);
+
   return (
     <GridItem
       key={cardNumber}
@@ -37,13 +41,20 @@ export const RaffleCardItem = ({
       onClick={() => openRegister(formattedCardNumber)}
       transition="transform 0.25s ease"
       _hover={{
-        transform: 'scale(1.1)',
-        transition: 'transform 0.5s ease',
+        ...(!selected && { transform: 'scale(1.1)', transition: 'transform 0.5s ease' }),
       }}
     >
-      <Text as="span" fontSize={`${cardFontSize}px`}>
-        {formattedCardNumber}
-      </Text>
+      <Flex position="absolute" visibility="visible" align="center" justify="center">
+        <Text as="span" fontSize={`${cardFontSize}px`}>
+          {formattedCardNumber}
+        </Text>
+      </Flex>
+
+      <Flex position="absolute" visibility="hidden" align="center" justify="center">
+        <Text as="span" fontSize={`${cardFontSize}px`}>
+          {selectedNumbers[formattedCardNumber]}
+        </Text>
+      </Flex>
     </GridItem>
   );
 };
