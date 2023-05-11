@@ -24,8 +24,6 @@ export const RaffleCardItem = ({
 
   const selected = selectedNumbers[formattedCardNumber];
 
-  console.log(selected);
-
   return (
     <GridItem
       key={cardNumber}
