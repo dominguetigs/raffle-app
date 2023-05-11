@@ -28,6 +28,7 @@ export const theme = extendTheme({
         h: '100vh',
         bg: 'brand.500',
         color: '#000000',
+        overflow: 'hidden',
       },
     },
   },
