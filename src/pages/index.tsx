@@ -19,7 +19,7 @@ export default function Home() {
         <script src="/static/confetti.js" defer></script>
       </Head>
       <Box as="main" h="100%" maxW={1200} p={[2, 2, 8]} m="0 auto">
-        {/** <Header /> **/}
+        <Header />
         <RaffleCard />
         <RaffleRegisterModal />
         <Raffle />

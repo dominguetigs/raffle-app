@@ -51,7 +51,7 @@ export const Raffle = (): JSX.Element => {
         setIsFinishedRaffle(true);
         Utils.initConffeti(confettiRef.current);
 
-        timeouts.forEach((timer) => clearTimeout(timer));
+        timeouts?.forEach((timer) => clearTimeout(timer));
         clearTimeout(timeout);
       }, 25 * maxLoop);
     }
@@ -65,10 +65,10 @@ export const Raffle = (): JSX.Element => {
   return (
     <>
       <Button
-        m="2rem auto"
-        display="block"
-        fontSize="24px"
+        className={styles['raffle-btn']}
         colorScheme="brand"
+        size="lg"
+        disabled={isRaffling}
         onClick={() => handleRaffle()}
       >
         Sortear

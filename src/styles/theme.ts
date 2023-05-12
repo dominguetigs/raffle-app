@@ -26,7 +26,7 @@ export const theme = extendTheme({
       body: {
         w: '100vw',
         h: '100vh',
-        bg: 'rgba(134, 144, 166, .5)',
+        bg: '#fff',
         color: '#000000',
         position: 'fixed',
         overflow: 'hidden',
