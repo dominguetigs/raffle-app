@@ -28,12 +28,14 @@ export const RaffleCardItem = ({
     <GridItem
       key={cardNumber}
       cursor="pointer"
+      position="relative"
       display="flex"
       alignItems="center"
       justifyContent="center"
       w={`${cardDimension}px`}
       h={`${cardDimension}px`}
       bg="#7fa3d3"
+      fontWeight={600}
       borderWidth="1px"
       borderColor="brand.300"
       onClick={() => openRegister(formattedCardNumber)}
@@ -42,17 +44,50 @@ export const RaffleCardItem = ({
         ...(!selected && { transform: 'scale(1.1)', transition: 'transform 0.5s ease' }),
       }}
     >
-      <Flex position="absolute" visibility="visible" align="center" justify="center">
-        <Text as="span" fontSize={`${cardFontSize}px`}>
-          {formattedCardNumber}
-        </Text>
-      </Flex>
-
-      <Flex position="absolute" visibility="hidden" align="center" justify="center">
-        <Text as="span" fontSize={`${cardFontSize}px`}>
-          {selectedNumbers[formattedCardNumber]}
-        </Text>
-      </Flex>
+      {selected ? (
+        <>
+          <Box position="absolute" bg="rgba(8, 24, 60, .5)" w="100%" h="100%"></Box>
+          <Box
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            w="100%"
+            h="100%"
+            color="rgba(134, 144, 166, .5)"
+            fontWeight="thin"
+          >
+            <Text
+              position="absolute"
+              top={0}
+              left={0}
+              pl={1}
+              as="span"
+              fontSize={`${cardFontSize}px`}
+            >
+              {formattedCardNumber}
+            </Text>
+            <Text
+              as="span"
+              fontSize={`${cardFontSize - 4}px`}
+              sx={{
+                '-webkit-transform': 'rotate(-45deg)',
+                '-moz-transform': 'rotate(-45deg)',
+                '-ms-transform': 'rotate(-45deg)',
+                '-o-transform': 'rotate(-45deg)',
+                transform: 'rotate(-45deg)',
+              }}
+            >
+              {selected}
+            </Text>
+          </Box>
+        </>
+      ) : (
+        <Flex align="center" justify="center">
+          <Text as="span" fontSize={`${cardFontSize}px`}>
+            {formattedCardNumber}
+          </Text>
+        </Flex>
+      )}
     </GridItem>
   );
 };

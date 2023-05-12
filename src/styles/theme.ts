@@ -26,8 +26,9 @@ export const theme = extendTheme({
       body: {
         w: '100vw',
         h: '100vh',
-        bg: 'brand.500',
+        bg: 'rgba(134, 144, 166, .5)',
         color: '#000000',
+        position: 'fixed',
         overflow: 'hidden',
       },
     },

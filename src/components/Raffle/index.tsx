@@ -64,7 +64,13 @@ export const Raffle = (): JSX.Element => {
 
   return (
     <>
-      <Button m="2rem auto" display="block" colorScheme="brand" onClick={() => handleRaffle()}>
+      <Button
+        m="2rem auto"
+        display="block"
+        fontSize="24px"
+        colorScheme="brand"
+        onClick={() => handleRaffle()}
+      >
         Sortear
       </Button>
 
