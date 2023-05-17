@@ -24,6 +24,7 @@ export const RaffleRegisterModal = (): JSX.Element => {
   const { isOpen, onClose } = disclosure;
 
   function handleSave(): void {
+    return;
     save({ [currentCardNumber]: name });
     onClose();
   }

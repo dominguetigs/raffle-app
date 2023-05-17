@@ -1,24 +1,20 @@
 .image {
-  width: 20vw;
+  width: 90px;
   height: auto;
 }
 
 .title {
-  font-size: 7vw;
+  font-size: 24px;
 }
 
 @media only screen and (min-width: 720px) {
   .image {
-    width: 10vw;
-  }
-
-  .title {
-    font-size: 4vw;
+    width: 100px;
   }
 }
 
 @media only screen and (min-width: 990px) {
   .title {
-    font-size: 48px;
+    font-size: 32px;
   }
 }

@@ -22,7 +22,7 @@ export const RaffleCardItem = ({
 
   const formattedCardNumber = formatCardNumber(cardNumber);
 
-  const selected = selectedNumbers[formattedCardNumber];
+  const selected = selectedNumbers[cardNumber + 1];
 
   return (
     <GridItem
@@ -38,7 +38,7 @@ export const RaffleCardItem = ({
       fontWeight={600}
       borderWidth="1px"
       borderColor="brand.300"
-      onClick={() => openRegister(formattedCardNumber)}
+      onClick={() => /* openRegister(formattedCardNumber)*/ null}
       transition="transform 0.25s ease"
       _hover={{
         ...(!selected && { transform: 'scale(1.1)', transition: 'transform 0.5s ease' }),
@@ -63,12 +63,14 @@ export const RaffleCardItem = ({
               pl={1}
               as="span"
               fontSize={`${cardFontSize}px`}
+              fontWeight={600}
             >
               {formattedCardNumber}
             </Text>
             <Text
               as="span"
-              fontSize={`${cardFontSize - 4}px`}
+              fontSize={`${cardFontSize - 2}px`}
+              fontWeight={600}
               sx={{
                 '-webkit-transform': 'rotate(-45deg)',
                 '-moz-transform': 'rotate(-45deg)',

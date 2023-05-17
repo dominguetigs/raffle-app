@@ -56,8 +56,8 @@ export const RaffleCard = (): JSX.Element => {
   return (
     <Grid
       templateColumns={`repeat(${RAFFLE_ROW_COL_LENGTH}, 1fr)`}
-      maxW={600}
-      maxH={600}
+      maxW={500}
+      maxH={500}
       m="0 auto"
       ref={boxRef}
     >

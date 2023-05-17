@@ -4,6 +4,8 @@ import { useDisclosure, UseDisclosureReturn } from '@chakra-ui/react';
 
 import { Data } from '@r/pages/api/staticdata';
 
+import { USERS } from '@r/constants';
+
 interface RaffleRegisterProps {
   children: ReactNode;
 }
@@ -29,9 +31,9 @@ export const RaffleRegisterProvider = ({ children }: RaffleRegisterProps): JSX.E
 
   async function retrieveSelectedNumbers(): Promise<void> {
     try {
-      const result = await fetch(API_URL);
-      const data = await result.json();
-      setSelectedNumbers(data);
+      /* const result = await fetch(API_URL);
+      const data = await result.json(); */
+      setSelectedNumbers(USERS);
     } catch (error) {
       console.error(error);
     }
